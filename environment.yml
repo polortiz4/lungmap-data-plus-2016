@@ -1,0 +1,12 @@
+name: assignment02
+dependencies:
+    - python = 3.6
+    - numpy
+    - pandas
+    - pytest
+    - pytest-pep8
+    - pytest-cov
+    - scipy
+    - sphinx
+    - ipython
+
