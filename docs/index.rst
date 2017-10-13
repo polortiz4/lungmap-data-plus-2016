@@ -11,4 +11,3 @@ bme590_assignment02
    tachybradycardia
    take_Average
    write_output
-   modules
