@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>HRinst module &#8212; Assignemnt02 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="bradyTachyCardia module" href="bradyTachyCardia.html" />
+    <link rel="prev" title="ECG_Class module" href="ECG_Class.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bradyTachyCardia.html" title="bradyTachyCardia module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ECG_Class.html" title="ECG_Class module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Assignemnt02 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-HRinst">
+<span id="hrinst-module"></span><h1>HRinst module<a class="headerlink" href="#module-HRinst" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="HRinst.HRinst">
+<code class="descclassname">HRinst.</code><code class="descname">HRinst</code><span class="sig-paren">(</span><em>dataset</em>, <em>secperunit=60</em>, <em>peak_threshold=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/HRinst.html#HRinst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#HRinst.HRinst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dataset</strong> &#8211; (tuple) Two elements, each a 1xN ndarray for time and voltage values respectively</li>
+<li><strong>secperunit</strong> &#8211; (int or double) Conversion from unit of time ndarray to seconds</li>
+<li><strong>peak_threshold</strong> &#8211; (double) percentage of maximum peak to set thresholding</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">(ndarray) 2 columns. First column with time in s, second column with heart rate in BPM.
+Each element in the ndarray is a float.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ECG_Class.html"
+                        title="previous chapter">ECG_Class module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bradyTachyCardia.html"
+                        title="next chapter">bradyTachyCardia module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/HRinst.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bradyTachyCardia.html" title="bradyTachyCardia module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ECG_Class.html" title="ECG_Class module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Assignemnt02 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Pablo Ortiz, Julia Ross, Emelina Vienneau.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+    </div>
+  </body>
+</html>

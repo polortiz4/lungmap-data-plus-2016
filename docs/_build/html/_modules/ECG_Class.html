@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ECG_Class &#8212; Assignemnt02 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Assignemnt02 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for ECG_Class</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="ECG_Class"><a class="viewcode-back" href="../ECG_Class.html#ECG_Class.ECG_Class">[docs]</a><span></span><span class="k">class</span> <span class="nc">ECG_Class</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This class treats a file containing ECG data as an object</span>
+
+<span class="sd">    It has many associated methods that process and display this data</span>
+
+<span class="sd">    :type filename: string</span>
+<span class="sd">    :param filename: the name of the csv file with the ECG data</span>
+
+<span class="sd">    :type avemins: double or int</span>
+<span class="sd">    :param avemins: number of minutes to compute the average heart rate</span>
+
+<span class="sd">    :type outName: string</span>
+<span class="sd">    :param outName: name of output file</span>
+
+<span class="sd">    :type lowerThresh: double or int</span>
+<span class="sd">    :param lowerThresh: lower threshold for bradycardia</span>
+
+<span class="sd">    :type upperThresh: double or int</span>
+<span class="sd">    :param upperThresh: upper threshold for tachycardia</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">avemins</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">outName</span><span class="o">=</span><span class="s2">&quot;_output.txt&quot;</span><span class="p">,</span> <span class="n">lowerThresh</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">upperThresh</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Creates the variables associated with the class</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">load_data</span> <span class="k">import</span> <span class="n">load_data</span>
+        <span class="kn">from</span> <span class="nn">HRinst</span> <span class="k">import</span> <span class="n">HRinst</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mins</span> <span class="o">=</span> <span class="n">avemins</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bradyT</span> <span class="o">=</span> <span class="n">lowerThresh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tachyT</span> <span class="o">=</span> <span class="n">upperThresh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">voltage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instHR</span> <span class="o">=</span> <span class="n">HRinst</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">outName</span> <span class="o">==</span> <span class="s2">&quot;_output.txt&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">outputfile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="n">outName</span>
+        <span class="k">elif</span> <span class="n">outName</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span><span class="o">==</span><span class="s1">&#39;.txt&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">outputfile</span> <span class="o">=</span> <span class="n">outName</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">outputfile</span> <span class="o">=</span> <span class="n">outName</span> <span class="o">+</span> <span class="s1">&#39;.txt&#39;</span>
+
+<div class="viewcode-block" id="ECG_Class.avg"><a class="viewcode-back" href="../ECG_Class.html#ECG_Class.ECG_Class.avg">[docs]</a>    <span class="k">def</span> <span class="nf">avg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        :type return: tuple</span>
+<span class="sd">        :return: average heart rate (</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="kn">from</span> <span class="nn">take_average</span> <span class="k">import</span> <span class="n">average</span>
+
+        <span class="k">return</span> <span class="n">average</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instHR</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">mins</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ECG_Class.btc"><a class="viewcode-back" href="../ECG_Class.html#ECG_Class.ECG_Class.btc">[docs]</a>    <span class="k">def</span> <span class="nf">btc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">bradyTachyCardia</span> <span class="k">import</span> <span class="n">bradyTachyCardia</span>
+
+        <span class="k">return</span> <span class="n">bradyTachyCardia</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">instHR</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">bradyT</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">tachyT</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ECG_Class.output"><a class="viewcode-back" href="../ECG_Class.html#ECG_Class.ECG_Class.output">[docs]</a>    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Creates a file containing the output of these functions</span>
+
+<span class="sd">        Runs all of the functions and outputs into a file of the specified filename</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            mins (int): Number of minutes to take HR over</span>
+<span class="sd">            filename (str): optional name of file if you don&#39;t want</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            An ndarray of average heart rate at each time point</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="kn">from</span> <span class="nn">write_output</span> <span class="k">import</span> <span class="n">write_output</span>
+
+        <span class="n">ave</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">avg</span><span class="p">()</span>
+        <span class="n">btc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">btc</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">write_output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">HRinst</span><span class="p">,</span> <span class="n">ave</span><span class="p">,</span> <span class="n">btc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputfile</span><span class="p">)</span></div></div>
+
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Assignemnt02 1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Pablo Ortiz, Julia Ross, Emelina Vienneau.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+    </div>
+  </body>
+</html>
