@@ -3,9 +3,7 @@ from scipy import stats
 
 
 def HRinst(dataset, secperunit=60, peak_threshold=0.5):
-
-    """
-    Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.
+    """ Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.
 
     :param dataset: (tuple) Two elements, each a 1xN ndarray for time and voltage values respectively
     :param secperunit: (int or double) Conversion from unit of time ndarray to seconds
