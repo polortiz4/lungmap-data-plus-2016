@@ -1,7 +1,3 @@
-import numpy as np
-from scipy import stats
-
-
 def HRinst(dataset, secperunit=60, peak_threshold=0.5):
     """ Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.
 
@@ -11,6 +7,8 @@ def HRinst(dataset, secperunit=60, peak_threshold=0.5):
     :returns: (ndarray) 2 columns. First column with time in s, second column with heart rate in BPM.
         Each element in the ndarray is a float.
     """
+    import numpy as np
+    from scipy import stats
 
     time = dataset[:][0]
     voltage = dataset[:][1]
