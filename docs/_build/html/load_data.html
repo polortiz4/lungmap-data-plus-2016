@@ -59,15 +59,14 @@
 <dl class="function">
 <dt id="load_data.load_data">
 <code class="descclassname">load_data.</code><code class="descname">load_data</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/load_data.html#load_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#load_data.load_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>gets the length in items in an array of each interval of the time that is inputed in minutes</p>
+<dd><p>Loads the data in a file</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> &#8211; (.csv file)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file</strong> &#8211; (string) The filename of the file where the ECG data is</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">(tuple) of length 2 where the first element is an array of time and the second an array
-of voltages in mV</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A matrix containing all the data from the file</td>
 </tr>
 </tbody>
 </table>

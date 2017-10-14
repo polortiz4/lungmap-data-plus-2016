@@ -1,14 +1,15 @@
-def get_interval(mat,mins):
-    """
-    gets the length in items in an array of each interval of the time that is inputed in minutes
+from load_data import load_data
+import numpy as np
 
-    :param mat: (ndarray)
-    :param mins: (int)
-    :returns: length of the interval in float
+
+def get_interval(time,mins=1):
+
+    """  Figures out how many points in mins minutes
+    :param time: (ndarray) An array of times
+    :param mins: (int) Number of minutes to take HR over
+    :returns: The length in data points of mins minutes
     """
 
-    time = mat[:,0]
-    hr = mat[:,1]
     secs = mins*60
     seglen = 0
     for a in range(time.shape[0]):
@@ -22,24 +23,17 @@ def get_interval(mat,mins):
     return seglen
 
 
-def average(mat,mins):
+def average(hr,time,mins=1):
+
+    """ Takes a running average of HR data
+    :param hr: (ndarray) An array of heart rates
+    :param mins: (int) Number of minutes to take HR over
+    :returns: An ndarray of average heart rate at each time point
     """
-    gets the length in items in an array of each interval of the time that is inputed in minutes
 
-    :param mat: (ndarray)
-    :param mins: (int)
-    :returns: list of same length as instantaneous hr that gives average HR at each time point
-    """
-
-    import numpy as np
-
-    time = mat[:,0]
-    hr = mat[:,1]
-    secs = mins*60
-    seglen = get_interval(mat,mins)
-    print(seglen)
+    seglen = get_interval(time,mins)
     averages = []
-    for a in range(hr.shape[0]):
+    for a, val in enumerate(hr):
         if a<seglen:
             averages.append('calculating')
         else:
@@ -49,4 +43,4 @@ def average(mat,mins):
     return averages
 
 if __name__ == "__main__":
-    average('TestAve.csv',1)
+    average()

@@ -30,7 +30,7 @@ class ECG_Class(object):
         self.mins = avemins
         self.bradyT = lowerThresh
         self.tachyT = upperThresh
-        self.data = load_data(self.name)
+        self.data = load_data(filename)
         self.time = self.data[:][0]
         self.voltage = self.data[:][1]
         self.instHR = HRinst(self.data)
@@ -51,27 +51,29 @@ class ECG_Class(object):
 
         return average(self.instHR,self.time,self.mins)
 
-    def btc(self):
-        from bradyTachyCardia import bradyTachyCardia
+    def brady(self):
+        from tachybradycardia import bradycardia
+        brady =  bradycardia(self.instHR,self.bradyT)
+        return brady
 
-        return bradyTachyCardia(self.instHR,self.bradyT,self.tachyT)
+    def tachy(self):
+        from tachybradycardia import tachycardia
+        tachy = tachycardia(self.instHR, self.tachyT)
+        return tachy
 
     def output(self):
+
         """ Creates a file containing the output of these functions
 
-        Runs all of the functions and outputs into a file of the specified filename
-
-        Args:
-            mins (int): Number of minutes to take HR over
-            filename (str): optional name of file if you don't want
-
-        Returns:
-            An ndarray of average heart rate at each time point
+        :param mins: (int) Number of minutes to take HR over
+        :param filename: (str) optional name of file if you don't want
+        :returns: An ndarray of average heart rate at each time point
         """
 
         from write_output import write_output
 
         ave = self.avg()
-        btc = self.btc()
-        return write_output(self.time, self.HRinst, ave, btc, self.outputfile)
+        b = self.brady()
+        t = self.tachy()
 
+        return write_output(self.time, self.instHR, ave, b, t, self.outputfile)

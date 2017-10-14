@@ -53,9 +53,7 @@
 
 
 <div class="viewcode-block" id="HRinst"><a class="viewcode-back" href="../HRinst.html#HRinst.HRinst">[docs]</a><span class="k">def</span> <span class="nf">HRinst</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">secperunit</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">peak_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.</span>
+    <span class="sd">&quot;&quot;&quot;Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.</span>
 
 <span class="sd">    :param dataset: (tuple) Two elements, each a 1xN ndarray for time and voltage values respectively</span>
 <span class="sd">    :param secperunit: (int or double) Conversion from unit of time ndarray to seconds</span>
@@ -66,6 +64,7 @@
 
     <span class="n">time</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">voltage</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">1</span><span class="p">]</span>
+
     <span class="n">thresholded</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="n">peak_threshold</span> <span class="o">*</span> <span class="n">voltage</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
     <span class="n">hrinst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">thresholded</span><span class="p">))</span>
 
@@ -82,7 +81,7 @@
             <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
 
     <span class="n">hrinst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">hrinst</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">hrinst</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">time</span><span class="p">,</span><span class="n">hrinst</span><span class="p">))</span>
+    <span class="c1">#hrinst=np.column_stack((time,hrinst))</span>
     <span class="k">return</span> <span class="n">hrinst</span></div>
 </pre></div>
 

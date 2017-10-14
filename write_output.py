@@ -1,4 +1,4 @@
-def write_output(time_HRinst, HRavg, btc):
+def write_output(time,HRinst, HRavg, btc,filename="assignment02_output.csv"):
     """Writes to text file time, instantaneous heart rate, average heart rate over user-specified interval, and when
     brady- or tachycardia occurred in the ECG trace
 
@@ -8,10 +8,10 @@ def write_output(time_HRinst, HRavg, btc):
         B means bradycardia, and N means normal
     """
 
-    file = open("assignment02_output.csv", "w+")
+    file = open(filename, "w+")
     header = "Time (s), Instantaneous Heart Rate, Average Heart Rate, Brady/Tachycardia Occurrence\n"
     file.write(header)
     for i, hr in enumerate(HRavg):
-        row = str(time_HRinst[i,0]) + "," + str(time_HRinst[i,1]) + "," + str(HRavg[i]) + "," + btc[i] + "\n"
+        row = str(time[i]) + "," + str(HRinst[i]) + "," + str(HRavg[i]) + "," + btc[i] + "\n"
         file.write(row)
     file.close()

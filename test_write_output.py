@@ -8,7 +8,7 @@ HRavg = np.array([0., 80., 90., 90., 85., 80., 70., 68., 57., 48.])
 btc = ['--', 'B', 'N', 'N', 'T', 'T', 'N', 'B', 'B', 'N']
 test_data = (time, HRinst, HRavg, btc)
 time_HRinst=np.column_stack((time,HRinst))
-write_output(time_HRinst, HRavg, btc)
+write_output(time_HRinst[:,0],time_HRinst[:,1], HRavg, btc)
 
 data = []
 data.append(np.loadtxt(open('assignment02_output.csv'), delimiter=',', skiprows=1, usecols=0, dtype=float))
