@@ -1,12 +1,10 @@
-import numpy as np
-
-
 def load_data(file):
     """ Loads the data in a file
     
     :param file: (string) The filename of the file where the ECG data is
     :returns: A matrix containing all the data from the file
     """
+    import numpy as np
 
     if not file.endswith('.csv'):
         raise ValueError("file must be in .csv format")
