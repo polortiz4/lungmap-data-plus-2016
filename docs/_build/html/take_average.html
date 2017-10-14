@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>take_average module &#8212; BME590Assignment02  documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="write_output module" href="write_output.html" />
+    <link rel="prev" title="tachybradycardia module" href="tachybradycardia.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="write_output.html" title="write_output module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tachybradycardia.html" title="tachybradycardia module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">BME590Assignment02  documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-take_average">
+<span id="take-average-module"></span><h1>take_average module<a class="headerlink" href="#module-take_average" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="take_average.average">
+<code class="descclassname">take_average.</code><code class="descname">average</code><span class="sig-paren">(</span><em>hr</em>, <em>time</em>, <em>mins=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/take_average.html#average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#take_average.average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a running average of HR data
+:param hr: (ndarray) An array of heart rates
+:param mins: (int) Number of minutes to take HR over
+:returns: An ndarray of average heart rate at each time point</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="take_average.get_interval">
+<code class="descclassname">take_average.</code><code class="descname">get_interval</code><span class="sig-paren">(</span><em>time</em>, <em>mins=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/take_average.html#get_interval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#take_average.get_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Figures out how many points in mins minutes
+:param time: (ndarray) An array of times
+:param mins: (int) Number of minutes to take HR over
+:returns: The length in data points of mins minutes</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tachybradycardia.html"
+                        title="previous chapter">tachybradycardia module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="write_output.html"
+                        title="next chapter">write_output module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/take_average.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="write_output.html" title="write_output module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tachybradycardia.html" title="tachybradycardia module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">BME590Assignment02  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, Pablo Ortiz, Julia Ross, Emelina Vienneau.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+    </div>
+  </body>
+</html>
