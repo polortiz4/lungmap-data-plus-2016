@@ -1,7 +1,7 @@
-take\_Average module
+take\_average module
 ====================
 
-.. automodule:: take_Average
+.. automodule:: take_average
     :members:
     :undoc-members:
     :show-inheritance:

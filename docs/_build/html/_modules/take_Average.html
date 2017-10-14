@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>take_Average &#8212; Assignemnt02 1.0 documentation</title>
+    <title>take_average &#8212; Assignment02 2 documentation</title>
     
     <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.0',
+        VERSION:     '2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -37,7 +37,7 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Assignemnt02 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Assignment02 2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>  
@@ -47,21 +47,15 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for take_Average</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+  <h1>Source code for take_average</h1><div class="highlight"><pre>
+<div class="viewcode-block" id="get_interval"><a class="viewcode-back" href="../take_average.html#take_average.get_interval">[docs]</a><span></span><span class="k">def</span> <span class="nf">get_interval</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">mins</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 
-
-<div class="viewcode-block" id="get_interval"><a class="viewcode-back" href="../take_Average.html#take_Average.get_interval">[docs]</a><span class="k">def</span> <span class="nf">get_interval</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">mins</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    gets the length in items in an array of each interval of the time that is inputed in minutes</span>
-
-<span class="sd">    :param mat: (ndarray)</span>
-<span class="sd">    :param mins: (int)</span>
-<span class="sd">    :returns: length of the interval in float</span>
+    <span class="sd">&quot;&quot;&quot;  Figures out how many points in mins minutes</span>
+<span class="sd">    :param time: (ndarray) An array of times</span>
+<span class="sd">    :param mins: (int) Number of minutes to take HR over</span>
+<span class="sd">    :returns: The length in data points of mins minutes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">time</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">hr</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">secs</span> <span class="o">=</span> <span class="n">mins</span><span class="o">*</span><span class="mi">60</span>
     <span class="n">seglen</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
@@ -75,22 +69,19 @@
     <span class="k">return</span> <span class="n">seglen</span></div>
 
 
-<div class="viewcode-block" id="average"><a class="viewcode-back" href="../take_Average.html#take_Average.average">[docs]</a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">mins</span><span class="p">):</span>
+<div class="viewcode-block" id="average"><a class="viewcode-back" href="../take_average.html#take_average.average">[docs]</a><span class="k">def</span> <span class="nf">average</span><span class="p">(</span><span class="n">hr</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">mins</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    gets the length in items in an array of each interval of the time that is inputed in minutes</span>
-
-<span class="sd">    :param mat: (ndarray)</span>
-<span class="sd">    :param mins: (int)</span>
-<span class="sd">    :returns: list of same length as instantaneous hr that gives average HR at each time point</span>
+    <span class="sd">&quot;&quot;&quot; Takes a running average of HR data</span>
+<span class="sd">    :param hr: (ndarray) An array of heart rates</span>
+<span class="sd">    :param mins: (int) Number of minutes to take HR over</span>
+<span class="sd">    :returns: An ndarray of average heart rate at each time point</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">time</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">hr</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">secs</span> <span class="o">=</span> <span class="n">mins</span><span class="o">*</span><span class="mi">60</span>
-    <span class="n">seglen</span> <span class="o">=</span> <span class="n">get_interval</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">mins</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">seglen</span><span class="p">)</span>
+
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+    <span class="n">seglen</span> <span class="o">=</span> <span class="n">get_interval</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">mins</span><span class="p">)</span>
     <span class="n">averages</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">hr</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">a</span><span class="o">&lt;</span><span class="n">seglen</span><span class="p">:</span>
             <span class="n">averages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;calculating&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -100,7 +91,7 @@
     <span class="k">return</span> <span class="n">averages</span></div>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">average</span><span class="p">(</span><span class="s1">&#39;TestAve.csv&#39;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">average</span><span class="p">()</span>
 </pre></div>
 
           </div>
@@ -131,7 +122,7 @@
         <li class="right" >
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Assignemnt02 1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Assignment02 2 documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>

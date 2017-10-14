@@ -1,5 +1,5 @@
-bme590_assignment02
-===================
+lungmap-data-plus-2016
+======================
 
 .. toctree::
    :maxdepth: 4
