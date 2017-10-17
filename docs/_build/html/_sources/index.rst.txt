@@ -9,5 +9,5 @@ bme590_assignment02
    bradyTachyCardia
    load_data
    tachybradycardia
-   take_average
+   take_Average
    write_output
