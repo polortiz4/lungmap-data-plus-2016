@@ -9,7 +9,7 @@ bme590_assignment02
    bradyTachyCardia
    load_data
    tachybradycardia
-   take_Average
+   take_average
    test_Average
    test_HRinst
    test_bradyTachyCardia
