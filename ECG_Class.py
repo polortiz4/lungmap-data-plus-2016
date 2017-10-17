@@ -44,8 +44,8 @@ class ECG_Class(object):
 
     def avg(self):
         '''
-        :type return: ndarray
-        :return: average heart rate
+        :type return: tuple
+        :return: average heart rate (
         '''
         from take_average import average
 
