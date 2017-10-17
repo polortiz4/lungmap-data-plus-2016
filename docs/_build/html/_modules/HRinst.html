@@ -48,12 +48,7 @@
           <div class="body" role="main">
             
   <h1>Source code for HRinst</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
-
-
-<div class="viewcode-block" id="HRinst"><a class="viewcode-back" href="../HRinst.html#HRinst.HRinst">[docs]</a><span class="k">def</span> <span class="nf">HRinst</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">secperunit</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">peak_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
-
+<div class="viewcode-block" id="HRinst"><a class="viewcode-back" href="../HRinst.html#HRinst.HRinst">[docs]</a><span></span><span class="k">def</span> <span class="nf">HRinst</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">secperunit</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">peak_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.</span>
 
@@ -63,6 +58,9 @@
 <span class="sd">    :returns: (ndarray) 2 columns. First column with time in s, second column with heart rate in BPM.</span>
 <span class="sd">        Each element in the ndarray is a float.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
 
     <span class="n">time</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">voltage</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">1</span><span class="p">]</span>
