@@ -58,21 +58,50 @@
 <span id="hrinst-module"></span><h1>HRinst module<a class="headerlink" href="#module-HRinst" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="HRinst.HRinst">
-<code class="descclassname">HRinst.</code><code class="descname">HRinst</code><span class="sig-paren">(</span><em>dataset</em>, <em>secperunit=60</em>, <em>peak_threshold=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/HRinst.html#HRinst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#HRinst.HRinst" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.</p>
+<code class="descclassname">HRinst.</code><code class="descname">HRinst</code><span class="sig-paren">(</span><em>dataset</em>, <em>secperunit=60</em>, <em>peak_threshold=98</em>, <em>filt=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/HRinst.html#HRinst"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#HRinst.HRinst" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the input data of the time and voltage to convert it into an array
+with time and instantaneous heart rate.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>dataset</strong> &#8211; (tuple) Two elements, each a 1xN ndarray for time and voltage values respectively</li>
-<li><strong>secperunit</strong> &#8211; (int or double) Conversion from unit of time ndarray to seconds</li>
-<li><strong>peak_threshold</strong> &#8211; (double) percentage of maximum peak to set thresholding</li>
+<li><strong>dataset</strong> &#8211; (tuple) Two elements, each a 1xN ndarray for time and
+voltage values respectively</li>
+<li><strong>secperunit</strong> &#8211; (int or double) Conversion from unit of time ndarray
+to seconds</li>
+<li><strong>peak_threshold</strong> &#8211; (double) percentage of maximum peak to set
+thresholding</li>
+<li><strong>filt</strong> &#8211; (boolean) true if user wants to filter data, false if not</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">(ndarray) 2 columns. First column with time in s, second column with heart rate in BPM.
-Each element in the ndarray is a float.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">(ndarray) 2 columns. First column with time in s, second column
+with heart rate in BPM. Each element in the ndarray is a float.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="HRinst.data_filter">
+<code class="descclassname">HRinst.</code><code class="descname">data_filter</code><span class="sig-paren">(</span><em>voltage</em>, <em>num_coef=8</em>, <em>hfreq=0.125</em>, <em>lfreq=0.0125</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/HRinst.html#data_filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#HRinst.data_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter the data using a band pass filter to smooth corners out and
+remove baseline drift</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>voltage</strong> &#8211; (ndarray) of size 1xN with the voltage values</li>
+<li><strong>num_coef</strong> &#8211; (int) order of the filter</li>
+<li><strong>hfreq</strong> &#8211; (double) critical high frequency</li>
+<li><strong>lfreq</strong> &#8211; (double) critical low frequency</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">(ndarray) of size 1xN with filtered voltage values</p>
 </td>
 </tr>
 </tbody>

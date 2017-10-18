@@ -71,14 +71,13 @@
     <span class="k">assert</span> <span class="n">tester</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="p">[]</span>
     <span class="k">assert</span> <span class="n">tester</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="p">[]</span></div>
 
+
 <div class="viewcode-block" id="MyTestCase"><a class="viewcode-back" href="../test_load.html#test_load.MyTestCase">[docs]</a><span class="k">class</span> <span class="nc">MyTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-<div class="viewcode-block" id="MyTestCase.test_datatype"><a class="viewcode-back" href="../test_load.html#test_load.MyTestCase.test_datatype">[docs]</a>    <span class="k">def</span> <span class="nf">test_datatype</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
-        <span class="n">dtype</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">load_data</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span></div>
+<div class="viewcode-block" id="MyTestCase.test_datatype"><a class="viewcode-back" href="../test_load.html#test_load.MyTestCase.test_datatype">[docs]</a>    <span class="k">def</span> <span class="nf">test_datatype</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">load_data</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MyTestCase.test_size"><a class="viewcode-back" href="../test_load.html#test_load.MyTestCase.test_size">[docs]</a>    <span class="k">def</span> <span class="nf">test_size</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
-        <span class="n">size</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">load_data</span><span class="p">,</span> <span class="s1">&#39;onecol.csv&#39;</span><span class="p">)</span></div></div>
-
-
+<div class="viewcode-block" id="MyTestCase.test_size"><a class="viewcode-back" href="../test_load.html#test_load.MyTestCase.test_size">[docs]</a>    <span class="k">def</span> <span class="nf">test_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">load_data</span><span class="p">,</span> <span class="s1">&#39;onecol.csv&#39;</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>

@@ -53,15 +53,18 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This module determines when in the ECG data there is bradycardia</span>
 
-<span class="sd">    :param hrinst: (ndarray) instantaneous heart rate- used to determine when bradycardia occurred in ECG trace</span>
-<span class="sd">    :param lowerthresh: (int or double) lower threshold for determining bradycardia- user input or default 60 bpm</span>
+<span class="sd">    :param hrinst: (ndarray) instantaneous heart rate- used to determine when</span>
+<span class="sd">     bradycardia occurred in ECG trace</span>
+<span class="sd">    :param lowerthresh: (int or double) lower threshold for determining</span>
+<span class="sd">     bradycardia- user input or default 60 bpm</span>
 <span class="sd">    :return: brady: (ndarray) 1 for bradycardia, 0 otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
     <span class="n">brady</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">hrinst</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hrinst</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">lowerthresh</span><span class="p">:</span>  <span class="c1"># this indicates bradycardia, aka the heart is beating too slowly</span>
+        <span class="k">if</span> <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">lowerthresh</span><span class="p">:</span>  <span class="c1"># this indicates bradycardia,</span>
+            <span class="c1">#  aka the heart is beating too slowly</span>
             <span class="n">brady</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">brady</span></div>
 
@@ -71,15 +74,18 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This module determines when in the ECG data there is tachycardia</span>
 
-<span class="sd">    :param hrinst: (ndarray) instantaneous heart rate- used to determine when tachycardia occurred in ECG trace</span>
-<span class="sd">    :param upperthresh: (int or double) upper threshold for determining tachycardia- user input or default 100 bpm</span>
+<span class="sd">    :param hrinst: (ndarray) instantaneous heart rate-</span>
+<span class="sd">     used to determine when tachycardia occurred in ECG trace</span>
+<span class="sd">    :param upperthresh: (int or double) upper threshold for determining</span>
+<span class="sd">     tachycardia- user input or default 100 bpm</span>
 <span class="sd">    :return: tachy: (ndarray) 1 for tachycardia, 0 otherwise</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
     <span class="n">tachy</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">hrinst</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hrinst</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">upperthresh</span><span class="p">:</span>  <span class="c1"># this indicates tachycardia, aka the heart is beating too quickly</span>
+        <span class="k">if</span> <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">upperthresh</span><span class="p">:</span>  <span class="c1"># this indicates tachycardia,</span>
+            <span class="c1">#  aka the heart is beating too quickly</span>
             <span class="n">tachy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">tachy</span></div>
 </pre></div>

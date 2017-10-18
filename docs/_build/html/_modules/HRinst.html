@@ -48,24 +48,32 @@
           <div class="body" role="main">
             
   <h1>Source code for HRinst</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="HRinst"><a class="viewcode-back" href="../HRinst.html#HRinst.HRinst">[docs]</a><span></span><span class="k">def</span> <span class="nf">HRinst</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">secperunit</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">peak_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+<div class="viewcode-block" id="HRinst"><a class="viewcode-back" href="../HRinst.html#HRinst.HRinst">[docs]</a><span></span><span class="k">def</span> <span class="nf">HRinst</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">secperunit</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">peak_threshold</span><span class="o">=</span><span class="mi">98</span><span class="p">,</span> <span class="n">filt</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Takes the input data of the time and voltage to convert it into an array with time and instantaneous heart rate.</span>
+<span class="sd">    Takes the input data of the time and voltage to convert it into an array</span>
+<span class="sd">    with time and instantaneous heart rate.</span>
 
-<span class="sd">    :param dataset: (tuple) Two elements, each a 1xN ndarray for time and voltage values respectively</span>
-<span class="sd">    :param secperunit: (int or double) Conversion from unit of time ndarray to seconds</span>
-<span class="sd">    :param peak_threshold: (double) percentage of maximum peak to set thresholding</span>
-<span class="sd">    :returns: (ndarray) 2 columns. First column with time in s, second column with heart rate in BPM.</span>
-<span class="sd">        Each element in the ndarray is a float.</span>
+<span class="sd">    :param dataset: (tuple) Two elements, each a 1xN ndarray for time and</span>
+<span class="sd">     voltage values respectively</span>
+<span class="sd">    :param secperunit: (int or double) Conversion from unit of time ndarray</span>
+<span class="sd">     to seconds</span>
+<span class="sd">    :param peak_threshold: (double) percentage of maximum peak to set</span>
+<span class="sd">     thresholding</span>
+<span class="sd">    :param filt: (boolean) true if user wants to filter data, false if not</span>
+<span class="sd">    :returns: (ndarray) 2 columns. First column with time in s, second column</span>
+<span class="sd">     with heart rate in BPM. Each element in the ndarray is a float.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
     <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">stats</span>
 
     <span class="n">time</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">voltage</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[:][</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="n">thresholded</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="n">peak_threshold</span> <span class="o">*</span> <span class="n">voltage</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">filt</span><span class="p">:</span>
+        <span class="n">voltage</span> <span class="o">=</span> <span class="n">data_filter</span><span class="p">(</span><span class="n">voltage</span><span class="p">)</span>
+
+    <span class="n">thresholded</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span>
+                                  <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="n">peak_threshold</span><span class="p">))</span>
     <span class="n">hrinst</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">thresholded</span><span class="p">))</span>
 
     <span class="n">is_increasing</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">thresholded</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">thresholded</span>
@@ -73,16 +81,36 @@
     <span class="n">is_maximum</span> <span class="o">=</span> <span class="n">is_increasing</span> <span class="o">*</span> <span class="n">will_decrease</span>
     <span class="n">peakInd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_maximum</span><span class="p">))</span>
 
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">thresholded</span><span class="p">):</span>
-        <span class="n">peaks</span><span class="o">=</span><span class="n">peakInd</span><span class="p">[</span><span class="n">peakInd</span><span class="o">&lt;</span><span class="n">i</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="n">peakInd</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]:</span>
-            <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">secperunit</span><span class="o">/</span> <span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">peaks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">peaks</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])])</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">thresholded</span><span class="p">):</span>
+        <span class="n">peaks</span> <span class="o">=</span> <span class="n">peakInd</span><span class="p">[</span><span class="n">peakInd</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">peakInd</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> \
+                <span class="n">secperunit</span> <span class="o">/</span> <span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">peaks</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span> <span class="o">-</span> <span class="n">time</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">peaks</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+            <span class="n">hrinst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="n">hrinst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">hrinst</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-    <span class="c1">#hrinst=np.column_stack((time,hrinst))</span>
+    <span class="n">hrinst</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">hrinst</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">hrinst</span></div>
+
+
+<div class="viewcode-block" id="data_filter"><a class="viewcode-back" href="../HRinst.html#HRinst.data_filter">[docs]</a><span class="k">def</span> <span class="nf">data_filter</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="n">num_coef</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">hfreq</span><span class="o">=</span><span class="mf">0.125</span><span class="p">,</span> <span class="n">lfreq</span><span class="o">=</span><span class="mf">0.0125</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Filter the data using a band pass filter to smooth corners out and</span>
+<span class="sd">    remove baseline drift</span>
+
+<span class="sd">    :param voltage: (ndarray) of size 1xN with the voltage values</span>
+<span class="sd">    :param num_coef: (int) order of the filter</span>
+<span class="sd">    :param hfreq: (double) critical high frequency</span>
+<span class="sd">    :param lfreq: (double) critical low frequency</span>
+<span class="sd">    :return: (ndarray) of size 1xN with filtered voltage values</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">signal</span>
+    <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">num_coef</span><span class="p">,</span> <span class="n">hfreq</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;low&#39;</span><span class="p">)</span>
+    <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">num_coef</span><span class="p">,</span> <span class="n">lfreq</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;High&#39;</span><span class="p">)</span>
+    <span class="n">low_filt</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">voltage</span><span class="p">)</span>
+    <span class="n">band_filt</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">filtfilt</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">low_filt</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">band_filt</span></div>
 </pre></div>
 
           </div>

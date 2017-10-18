@@ -57,25 +57,24 @@
 <span class="n">tup</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="s1">&#39;TestAve.csv&#39;</span><span class="p">)</span>
 <span class="n">time</span> <span class="o">=</span> <span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">hr</span> <span class="o">=</span> <span class="n">tup</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">time</span><span class="p">,</span><span class="n">hr</span><span class="p">]))</span>
+<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">time</span><span class="p">,</span> <span class="n">hr</span><span class="p">]))</span>
 
 
 <div class="viewcode-block" id="test_seglen"><a class="viewcode-back" href="../test_Average.html#test_Average.test_seglen">[docs]</a><span class="k">def</span> <span class="nf">test_seglen</span><span class="p">():</span>
 
-    <span class="k">assert</span> <span class="n">ta</span><span class="o">.</span><span class="n">get_interval</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">60</span>
-    <span class="k">assert</span> <span class="n">ta</span><span class="o">.</span><span class="n">get_interval</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">180</span></div>
+    <span class="k">assert</span> <span class="n">ta</span><span class="o">.</span><span class="n">get_interval</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">60</span>
+    <span class="k">assert</span> <span class="n">ta</span><span class="o">.</span><span class="n">get_interval</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">180</span></div>
 
 
 <div class="viewcode-block" id="test_output"><a class="viewcode-back" href="../test_Average.html#test_Average.test_output">[docs]</a><span class="k">def</span> <span class="nf">test_output</span><span class="p">():</span>
 
-    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">hr</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span> <span class="ow">is</span> <span class="nb">list</span></div>
+    <span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">ta</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">hr</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="ow">is</span> <span class="nb">list</span></div>
 
 
 <div class="viewcode-block" id="MyTestCase"><a class="viewcode-back" href="../test_Average.html#test_Average.MyTestCase">[docs]</a><span class="k">class</span> <span class="nc">MyTestCase</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
-<div class="viewcode-block" id="MyTestCase.test_seg"><a class="viewcode-back" href="../test_Average.html#test_Average.MyTestCase.test_seg">[docs]</a>    <span class="k">def</span> <span class="nf">test_seg</span><span class="p">(</span><span class="n">segs</span><span class="p">):</span>
-        <span class="n">segs</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">ta</span><span class="o">.</span><span class="n">get_interval</span><span class="p">,</span> <span class="n">mat</span><span class="p">,</span> <span class="mi">1200</span><span class="p">)</span></div></div>
-
+<div class="viewcode-block" id="MyTestCase.test_seg"><a class="viewcode-back" href="../test_Average.html#test_Average.MyTestCase.test_seg">[docs]</a>    <span class="k">def</span> <span class="nf">test_seg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">ta</span><span class="o">.</span><span class="n">get_interval</span><span class="p">,</span> <span class="n">mat</span><span class="p">,</span> <span class="mi">1200</span><span class="p">)</span></div></div>
 </pre></div>
 
           </div>
