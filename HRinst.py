@@ -1,4 +1,5 @@
 def HRinst(dataset, secperunit=60, peak_threshold=98, filt=True):
+
     """
     Takes the input data of the time and voltage to convert it into an array
     with time and instantaneous heart rate.
@@ -44,7 +45,8 @@ def HRinst(dataset, secperunit=60, peak_threshold=98, filt=True):
 
 
 def data_filter(voltage, num_coef=8, hfreq=0.125, lfreq=0.0125):
-    '''
+
+    """
     Filter the data using a band pass filter to smooth corners out and
     remove baseline drift
 
@@ -53,7 +55,7 @@ def data_filter(voltage, num_coef=8, hfreq=0.125, lfreq=0.0125):
     :param hfreq: (double) critical high frequency
     :param lfreq: (double) critical low frequency
     :return: (ndarray) of size 1xN with filtered voltage values
-    '''
+    """
     from scipy import signal
     b, a = signal.butter(num_coef, hfreq, btype='low')
     c, d = signal.butter(num_coef, lfreq, btype='High')
