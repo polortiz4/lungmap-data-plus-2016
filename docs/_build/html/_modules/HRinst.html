@@ -95,7 +95,8 @@
 
 
 <div class="viewcode-block" id="data_filter"><a class="viewcode-back" href="../HRinst.html#HRinst.data_filter">[docs]</a><span class="k">def</span> <span class="nf">data_filter</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="n">num_coef</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">hfreq</span><span class="o">=</span><span class="mf">0.125</span><span class="p">,</span> <span class="n">lfreq</span><span class="o">=</span><span class="mf">0.0125</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Filter the data using a band pass filter to smooth corners out and</span>
 <span class="sd">    remove baseline drift</span>
 
@@ -104,7 +105,7 @@
 <span class="sd">    :param hfreq: (double) critical high frequency</span>
 <span class="sd">    :param lfreq: (double) critical low frequency</span>
 <span class="sd">    :return: (ndarray) of size 1xN with filtered voltage values</span>
-<span class="sd">    &#39;&#39;&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">signal</span>
     <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">num_coef</span><span class="p">,</span> <span class="n">hfreq</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;low&#39;</span><span class="p">)</span>
     <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">butter</span><span class="p">(</span><span class="n">num_coef</span><span class="p">,</span> <span class="n">lfreq</span><span class="p">,</span> <span class="n">btype</span><span class="o">=</span><span class="s1">&#39;High&#39;</span><span class="p">)</span>
