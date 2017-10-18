@@ -19,7 +19,8 @@ class ECG_Class(object):
     :param upperThresh: upper threshold for tachycardia
     """
 
-    def __init__(self, filename, avemins=1, outName="_output.txt", lowerThresh=60, upperThresh=100):
+    def __init__(self, filename, avemins=1, outName="_output.txt",
+                 lowerThresh=60, upperThresh=100):
         '''
         Creates the variables associated with the class
 
@@ -37,7 +38,7 @@ class ECG_Class(object):
 
         if outName == "_output.txt":
             self.outputfile = self.name + outName
-        elif outName[-4:]=='.txt':
+        elif outName[-4:] == '.txt':
             self.outputfile = outName
         else:
             self.outputfile = outName + '.txt'
@@ -49,11 +50,11 @@ class ECG_Class(object):
         '''
         from take_average import average
 
-        return average(self.instHR,self.time,self.mins)
+        return average(self.instHR, self.time, self.mins)
 
     def brady(self):
         from tachybradycardia import bradycardia
-        brady =  bradycardia(self.instHR,self.bradyT)
+        brady = bradycardia(self.instHR, self.bradyT)
         return brady
 
     def tachy(self):

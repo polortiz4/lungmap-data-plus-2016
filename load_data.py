@@ -5,12 +5,28 @@ def load_data(file):
     :returns: A matrix containing all the data from the file
     """
     import numpy as np
+    import csv
 
     if not file.endswith('.csv'):
         raise ValueError("file must be in .csv format")
-
-    matrix = np.loadtxt(open(file), delimiter=",", skiprows=1)
-    dims = np.shape(matrix)
+    try:
+        matrix = np.loadtxt(open(file), delimiter=",", skiprows=1)
+        dims = np.shape(matrix)
+    except:
+        mat_csv = csv.reader(open(file))
+        count = 0
+        arr = []
+        for row in mat_csv:
+            if row[0] == '' or row[1] == '':
+                continue
+            elif row[0][0].isalpha() or row[1][0].isalpha():
+                continue
+            else:
+                arr.append([float(row[0]), float(row[1])])
+                count += 1
+        matrix = np.array(arr)
+        dims = np.shape(matrix)
+        print(matrix)
 
     if len(dims) < 2 or dims[1] != 2:
         raise ValueError("file must have two columns (time and voltage)")
@@ -38,4 +54,3 @@ def load_data(file):
 
 if __name__ == "__main__":
     load_data('ECGTest.csv')
-

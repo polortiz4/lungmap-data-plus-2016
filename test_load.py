@@ -21,11 +21,10 @@ def test_columns_full():
     assert tester[0] != []
     assert tester[1] != []
 
+
 class MyTestCase(unittest.TestCase):
-    def test_datatype(dtype):
-        dtype.assertRaises(ValueError, load_data, 'hello')
+    def test_datatype(self):
+        self.assertRaises(ValueError, load_data, 'hello')
 
-    def test_size(size):
-        size.assertRaises(ValueError, load_data, 'onecol.csv')
-
-
+    def test_size(self):
+        self.assertRaises(ValueError, load_data, 'onecol.csv')

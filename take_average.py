@@ -1,4 +1,5 @@
-def get_interval(time,mins=1):
+def get_interval(time, mins=1):
+
     """  Figures out how many points in mins minutes
     :param time: (ndarray) An array of times
     :param mins: (int) Number of minutes to take HR over
@@ -8,7 +9,7 @@ def get_interval(time,mins=1):
     secs = mins*60
     seglen = 0
     for a in range(time.shape[0]):
-        if time[a]>secs:
+        if time[a] > secs:
             seglen = a + 1
             break
 
@@ -18,25 +19,28 @@ def get_interval(time,mins=1):
     return seglen
 
 
-def average(hr,time,mins=1):
+def average(hr, time, mins=1):
+
     """ Takes a running average of HR data
     :param hr: (ndarray) An array of heart rates
+    :param time: (ndarray) An array of time values
     :param mins: (int) Number of minutes to take HR over
     :returns: An ndarray of average heart rate at each time point
     """
-
+    from load_data import load_data
     import numpy as np
 
-    seglen = get_interval(time,mins)
+    seglen = get_interval(time, mins)
     averages = []
     for a, val in enumerate(hr):
-        if a<seglen:
+        if a < seglen:
             averages.append('calculating')
         else:
-            curAve = np.mean(hr[a-seglen:a])
-            averages.append(curAve)
+            cur_ave = np.mean(hr[a-seglen:a])
+            averages.append(cur_ave)
 
     return averages
+
 
 if __name__ == "__main__":
     average()
